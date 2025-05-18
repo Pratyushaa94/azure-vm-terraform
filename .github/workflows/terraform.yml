@@ -11,7 +11,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: azure-vm-terraform/azure  # Set correct Terraform directory
+        working-directory: azure  # Set correct Terraform directory
 
     steps:
       - name: Checkout Repository
