@@ -17,10 +17,14 @@ resource "azurerm_linux_virtual_machine" "private_vm" {
     storage_account_type  = "Standard_LRS"
   }
 
+  
+
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku      = "22.04-LTS"
-    version   = "latest"
+  publisher = "Canonical"
+  offer     = "0001-com-ubuntu-server-focal"
+  sku       = "20_04-lts"
+  version   = "latest"
+}
+
   }
 }
