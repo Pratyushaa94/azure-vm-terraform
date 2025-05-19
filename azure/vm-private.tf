@@ -9,7 +9,7 @@ resource "azurerm_linux_virtual_machine" "private_vm" {
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("C:/Users/LENOVO/.ssh/id_rsa.pub")
   }
 
   os_disk {
