@@ -27,4 +27,3 @@ resource "azurerm_linux_virtual_machine" "private_vm" {
 }
 
   }
-}
