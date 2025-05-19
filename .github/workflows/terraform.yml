@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 name: Terraform Deployment
 
 on:
@@ -36,3 +38,4 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
+>>>>>>> 0af4cf65f4a8f5f1587e4e9887e2f28df347479b
