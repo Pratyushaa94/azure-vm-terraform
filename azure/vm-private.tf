@@ -9,7 +9,7 @@ resource "azurerm_linux_virtual_machine" "private_vm" {
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("~/.ssh/id_rsa.pub")
+    public_key = file("${path.module}/id_rsa.pub")
   }
 
   os_disk {
@@ -17,10 +17,13 @@ resource "azurerm_linux_virtual_machine" "private_vm" {
     storage_account_type  = "Standard_LRS"
   }
 
+  
+
   source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "22_04-lts"
-    version   = "latest"
-  }
+  publisher = "Canonical"
+  offer     = "0001-com-ubuntu-server-focal"
+  sku       = "20_04-lts"
+  version   = "latest"
 }
+
+  }

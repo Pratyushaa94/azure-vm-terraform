@@ -8,10 +8,11 @@ resource "azurerm_network_security_group" "nsg_private" {
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "TCP"
+    protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "22"
-    source_address_prefix      = azurerm_network_interface.nic_public.private_ip_address
-    destination_address_prefix = "*"
+    source_address_prefix = azurerm_network_interface.public_nic.private_ip_address
+
+   destination_address_prefix = "*"
   }
 }
