@@ -3,15 +3,14 @@ name: Terraform Deployment
 on:
   push:
     branches:
-      - main  # Runs Terraform when code is pushed to the main branch
+      - main
 
 jobs:
   terraform:
     runs-on: ubuntu-latest
-
     defaults:
       run:
-        working-directory: azure  # Set correct Terraform directory
+        working-directory: azure
 
     steps:
       - name: Checkout Repository
@@ -45,3 +44,11 @@ jobs:
           ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
           ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         run: terraform apply -auto-approve tfplan
+
+      - name: Terraform Destroy
+        env:
+          ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+          ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+          ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        run: terraform destroy -auto-approve
