@@ -1,0 +1,41 @@
+<<<<<<< HEAD
+=======
+name: Terraform Deployment
+
+on:
+  push:
+    branches:
+      - main  # Runs Terraform when code is pushed to the main branch
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: azure  # Set correct Terraform directory
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.5.0
+
+      - name: Authenticate with Azure
+        run: |
+          az login --service-principal -u ${{ secrets.AZURE_CLIENT_ID }} \
+            -p ${{ secrets.AZURE_CLIENT_SECRET }} \
+            --tenant ${{ secrets.AZURE_TENANT_ID }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+>>>>>>> 0af4cf65f4a8f5f1587e4e9887e2f28df347479b
